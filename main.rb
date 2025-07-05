@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
+
 # Will work as linked list
 class LinkedList
   attr_accessor :name
@@ -9,7 +11,23 @@ class LinkedList
     @tail = nil
   end
 
-  def append(value)
+  def append(data)
+    node = Node.new(data)
+    if @head.nil?
+      @head = data
+      @tail = data
+    else
+      node.next_node(node)
+      @tail = node
+    end
+  end
+
+  def tail(tail)
+    @tail = tail
+  end
+
+  def head(head)
+    @head = head
   end
 end
 
@@ -21,7 +39,15 @@ class Node
     @data = data
     @next_node = nil
   end
+
+  def next_node(node)
+    @next_node = node
+  end
 end
 
-abc = Node.new(25)
-p abc.value
+p abc = LinkedList.new
+p abc.append(10)
+p abc.append(20)
+p abc.append(30)
+p abc.append(25)
+p abc.append(209)
