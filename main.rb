@@ -14,12 +14,11 @@ class LinkedList
   def append(data)
     node = Node.new(data)
     if @head.nil?
-      @head = data
-      @tail = data
+      @head = node
     else
-      node.next_node(node)
-      @tail = node
+      node.next_node(data)
     end
+    @tail = node
   end
 
   def tail(tail)
@@ -33,7 +32,7 @@ end
 
 # will work as a node
 class Node
-  attr_accessor :data, :next_node
+  attr_accessor :data
 
   def initialize(data)
     @data = data
@@ -41,13 +40,18 @@ class Node
   end
 
   def next_node(node)
-    @next_node = node
+    if @next_node.nil?
+      @next_node = nil
+      p @data = node
+    else
+      next_node(node)
+    end
   end
 end
 
-p abc = LinkedList.new
-p abc.append(10)
-p abc.append(20)
-p abc.append(30)
-p abc.append(25)
-p abc.append(209)
+abc = LinkedList.new
+abc.append(10)
+abc.append(20)
+abc.append(209)
+abc.append('420')
+abc.append('what')
