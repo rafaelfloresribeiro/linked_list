@@ -11,7 +11,7 @@ class LinkedList
     @tail = nil
   end
 
-  def append(data)
+  def preppend(data)
     node = Node.new(data)
     if @head.nil?
       @head = node
@@ -22,8 +22,43 @@ class LinkedList
     end
   end
 
-  def print
-    p @head
+  def append(data)
+    node = Node.new(data)
+    if @head.nil?
+      @head = node
+    else
+      @tail.next_node = node
+    end
+    @tail = node
+  end
+
+  def index(index = nil)
+    counter = 1
+    pointer = @head
+    if index.nil?
+      until pointer.next_node.nil?
+        counter += 1
+        pointer = pointer.next_node
+        return counter if pointer.next_node.nil?
+      end
+    else
+      while index != counter - 1
+        counter += 1
+        pointer = pointer.next_node
+      end
+      pointer
+    end
+  end
+
+  def pop
+  end
+
+  def print_head
+    @head.data
+  end
+
+  def print_tail
+    @tail.data
   end
 end
 
@@ -43,4 +78,6 @@ abc.append(20)
 abc.append(209)
 abc.append('420')
 abc.append('what')
-abc.print
+abc.preppend('gato')
+p abc.index
+p abc.index(5)
