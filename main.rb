@@ -4,7 +4,7 @@ require 'pry-byebug'
 
 # Will work as linked list
 class LinkedList
-  attr_accessor :name
+  attr_accessor :head, :tail
 
   def initialize
     @head = nil
@@ -15,37 +15,25 @@ class LinkedList
     node = Node.new(data)
     if @head.nil?
       @head = node
+      @tail = node
     else
-      node.next_node(data)
+      node.next_node = @head
+      @head = node
     end
-    @tail = node
   end
 
-  def tail(tail)
-    @tail = tail
-  end
-
-  def head(head)
-    @head = head
+  def print
+    p @head
   end
 end
 
 # will work as a node
 class Node
-  attr_accessor :data
+  attr_accessor :data, :next_node
 
   def initialize(data)
-    @data = data
+    self.data = data
     @next_node = nil
-  end
-
-  def next_node(node)
-    if @next_node.nil?
-      @next_node = nil
-      p @data = node
-    else
-      next_node(node)
-    end
   end
 end
 
@@ -55,3 +43,4 @@ abc.append(20)
 abc.append(209)
 abc.append('420')
 abc.append('what')
+abc.print
