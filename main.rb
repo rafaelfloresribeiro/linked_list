@@ -48,17 +48,23 @@ class LinkedList
       end
       pointer
     end
+  rescue NoMethodError
+    nil
   end
 
   def pop
+    pointer = @head
+    pointer = pointer.next_node while !pointer.next_node.nil? && !pointer.next_node.next_node.nil?
+    pointer.next_node = nil
+    @tail = pointer
   end
 
   def print_head
-    @head.data
+    @head
   end
 
   def print_tail
-    @tail.data
+    @tail
   end
 end
 
@@ -78,6 +84,7 @@ abc.append(20)
 abc.append(209)
 abc.append('420')
 abc.append('what')
-abc.preppend('gato')
-p abc.index
-p abc.index(5)
+# abc.preppend('gato')
+abc.pop
+p abc.print_head
+p abc.print_tail
