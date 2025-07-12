@@ -59,6 +59,16 @@ class LinkedList
     @tail = pointer
   end
 
+  def contains?(value)
+    pointer = @head
+    until pointer.next_node.nil?
+      return true if pointer.data == value
+
+      pointer = pointer.next_node
+      return false if pointer.next_node.nil?
+    end
+  end
+
   def print_head
     @head
   end
@@ -85,6 +95,8 @@ abc.append(209)
 abc.append('420')
 abc.append('what')
 # abc.preppend('gato')
-abc.pop
-p abc.print_head
-p abc.print_tail
+p abc.contains?(10)
+p abc.contains?(20)
+p abc.contains?('420')
+p abc.contains?(109)
+
